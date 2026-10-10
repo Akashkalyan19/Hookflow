@@ -2,7 +2,7 @@
 
 HookFlow Lite is a TypeScript webhook delivery dashboard. Create a destination, queue JSON events, sign each request with HMAC-SHA256, and inspect delivery attempts, bounded retries, and manual replays.
 
-> **Assignment status:** This is an MVP built for a 72-hour engineering assignment. The Code0/Kiro requirement is unresolved: the implementation was created with Codex, and neither Code0 nor Kiro was used.
+> **Assignment status:** This MVP was initially implemented with OpenAI Codex. Kiro IDE was used during follow-up development to plan, add, and verify focused dashboard tests.
 
 ## Features
 
@@ -232,9 +232,16 @@ Delivery is **at least once**, not exactly once. A receiver may have processed a
 - There is no secret-rotation endpoint, refresh-token flow, shared queue, multi-region setup, webhook replay window enforcement, or production observability system.
 - The worker is intentionally simple and uses MongoDB polling. The delivery attempt list is bounded by the configured maximum-attempt setting (capped at 10).
 
-## AI-assisted development disclosure
+## AI Development Experience
 
-Codex assisted with this implementation. Examples include drafting the Express routes and Mongoose schemas, creating the React dashboard and forms, implementing request signing and retry handling, and writing API and UI tests. Code0 or Kiro was not used; confirm with StartupMeu whether Codex is acceptable before submitting because that assignment requirement remains unresolved.
+OpenAI Codex assisted with the initial application implementation, including Express routes and Mongoose schemas, React pages and forms, request signing, retry handling, and API tests. I later used Kiro IDE for a focused follow-up task on the dashboard tests. I reviewed its changes and kept the production components unchanged.
+
+Specific Kiro-assisted tasks:
+
+- Traced the dashboard's loading, statistics, recent activity, empty, error, and navigation states to plan test coverage.
+- Added 14 React Testing Library and Vitest tests for `DashboardPage`.
+- Added explicit DOM cleanup between tests because Vitest globals are disabled, then tightened the loading and failed-status assertions to avoid false positives.
+- Ran the client test suite (19 tests passed) and client TypeScript typecheck (passed).
 
 ## Deployment recommendations
 
