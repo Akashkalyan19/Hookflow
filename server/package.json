@@ -8,6 +8,7 @@
     "dev:worker": "tsx watch src/worker-main.ts",
     "start:api": "node dist/server.js",
     "start:worker": "node dist/worker-main.js",
+    "start:combined": "node dist/combined-main.js",
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "lint": "eslint src tests",

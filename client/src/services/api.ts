@@ -7,6 +7,8 @@ export class ApiError extends Error {
   }
 }
 
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/+$/, "");
+
 export async function api<T>(path: string, options: RequestInit = {}): Promise<T> {
   const headers = new Headers(options.headers);
   headers.set("Accept", "application/json");
@@ -16,7 +18,7 @@ export async function api<T>(path: string, options: RequestInit = {}): Promise<T
 
   let response: Response;
   try {
-    response = await fetch(`/api${path}`, { ...options, headers });
+    response = await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
   } catch {
     throw new ApiError("Could not reach HookFlow. Check that the API is running.", 0);
   }

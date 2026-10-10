@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: hookflow-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build -w server
+    startCommand: npm run start:combined -w server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: WORKER_POLL_INTERVAL_MS
+        value: "2000"
+      - key: DELIVERY_TIMEOUT_MS
+        value: "10000"
+      - key: MAX_DELIVERY_ATTEMPTS
+        value: "3"
+      - key: RETRY_BASE_DELAY_MS
+        value: "5000"
+      - key: RETRY_MAX_DELAY_MS
+        value: "300000"
