@@ -109,7 +109,7 @@ Serve `client/dist` from a static host and configure that host or a reverse prox
 
 ### Deploy with Vercel, Render Free, and MongoDB Atlas
 
-This repository is a monorepo. Deploy the frontend to Vercel and use the root `render.yaml` Blueprint to deploy a single free Render web service that runs both the API and delivery worker. Both use the same MongoDB Atlas database.
+This repository is a monorepo. Deploy the frontend to Vercel and use the root `render.yaml` Blueprint to deploy a single free Render web service that runs both the API and delivery worker. Both use the same MongoDB Atlas database. Its build command installs development dependencies because TypeScript and Node.js type definitions are needed to compile the server.
 
 1. Push this repository to GitHub, then create a MongoDB Atlas cluster and database user. Copy the Atlas connection string for the application database and replace its username, password, and database name as needed.
 2. In Vercel, import the GitHub repository and keep the project Root Directory at the repository root. `vercel.json` sets the frontend build command, output directory, and SPA fallback needed for direct links such as `/deliveries`. The site can be deployed before the API is connected; sign-in and API features will work after step 5.

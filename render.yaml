@@ -3,7 +3,7 @@ services:
     name: hookflow-api
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run build -w server
+    buildCommand: npm ci --include=dev && npm run build -w server
     startCommand: npm run start:combined -w server
     healthCheckPath: /api/health
     envVars:
