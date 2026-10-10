@@ -1,0 +1,25 @@
+{
+  "name": "hookflow-lite",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "concurrently -n api,worker,client -c blue,magenta,green \"npm:dev:api\" \"npm:dev:worker\" \"npm:dev:client\"",
+    "dev:api": "npm run dev:api -w server",
+    "dev:worker": "npm run dev:worker -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm test --workspaces --if-present",
+    "start:api": "npm run start:api -w server",
+    "start:worker": "npm run start:worker -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "typescript-eslint": "^8.71.1"
+  }
+}
